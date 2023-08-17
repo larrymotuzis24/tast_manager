@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import SignInMessage from "./SignInMessage";
 import { collection, getDocs } from "firebase/firestore"; 
 import { db } from "../firebaseConfig";
+import TaskList from "./TaskList";
 
 
 const HomePage = () => {
@@ -17,6 +18,7 @@ const HomePage = () => {
             <div>
                 {isAuthenticated ? <TaskForm /> : <SignInMessage />}
             </div>
+            <TaskList />
         </div>
     )
 };

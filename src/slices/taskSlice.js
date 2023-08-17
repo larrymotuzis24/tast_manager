@@ -20,17 +20,13 @@ export const createTask = createAsyncThunk('tasks/createTask', async (taskData) 
 const taskSlice = createSlice({
     name: 'tasks',
     initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-      builder
-        .addCase(createTask.fulfilled, (state, action) => {
-          state.tasks.push(action.payload);
-        })
-        .addCase(createTask.rejected, (state, action) => {
-          // Handle the rejected case if needed
-          console.log('error creating task')
-        });
-    },
+    reducers: {
+      setTasks:(state, action) => {
+        state.tasks = action.payload;
+      }
+    }
   });
+
+  export const { setTasks } = taskSlice.actions;
   
   export default taskSlice.reducer;

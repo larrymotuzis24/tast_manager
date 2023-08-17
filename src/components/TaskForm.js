@@ -7,22 +7,20 @@ const TaskForm = () => {
   const [description, setDescription] = useState('');
 
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.auth.user.uid); // Get the user's UID from the Redux store
+  const userId = useSelector((state) => state.auth.user.uid);
 
   const handleCreateTask = () => {
     if (title && description) {
-      // Dispatch the createTask action with the task data
       dispatch(createTask({ title, description, userId }));
-
-      // Clear the form
       setTitle('');
       setDescription('');
     }
   };
 
   return (
-    <div>
-      <h2>Create a New Task</h2>
+    <div className="w-64 mx-auto mt-4">
+      {/* Add a centered wrapper with a maximum width */}
+      <h2 className="text-center mb-4">Create a New Task</h2>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
           Title
@@ -48,7 +46,7 @@ const TaskForm = () => {
       </div>
       <button
         onClick={handleCreateTask}
-        className="bg-blue-500 text-white font-bold py-2 px-4 rounded"
+        className="block mx-auto bg-blue-500 text-white font-bold py-2 px-4 rounded"
       >
         Create Task
       </button>
