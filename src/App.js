@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'; // Import useDispatch
+import { Route, Routes, Navigate  } from 'react-router-dom';
+import SignUp from "./components/SignUp";
+import SignIn from './components/SingIn';
+import HomePage from "./components/Home";
+import { setUser } from './slices/authSlice';
+import Header from "./components/Header";
 
-function App() {
+const App = () => {
+  const user = useSelector((state) => state.auth.user) || localStorage.getItem('user');
+  const dispatch = useDispatch();
+
+ 
+
+  useEffect(() => {
+    if(user){
+      dispatch(setUser(JSON.parse(user)))
+    }
+    // eslint-disable-next-line
+}, [dispatch]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+       <Header user={user} />
+      <Routes>
+        <Route path="/" element={user ? <HomePage /> : <Navigate to="/signin" />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
     </div>
   );
 }
