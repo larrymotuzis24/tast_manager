@@ -35,7 +35,6 @@ const TaskList = () => {
     return <div>Loading tasks...</div>;
   }
 
-  console.log('Component re-rendered'); // Add a log to check if the component re-renders
 
   return (
     <div className="w-64 mx-auto bg-white rounded-lg shadow p-4 border-b-2 border-gray-300">

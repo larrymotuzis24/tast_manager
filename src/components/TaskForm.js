@@ -19,7 +19,7 @@ const TaskForm = () => {
 
   return (
     <div className="w-64 mx-auto mt-4">
-      {/* Add a centered wrapper with a maximum width */}
+    
       <h2 className="text-center mb-4">Create a New Task</h2>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
