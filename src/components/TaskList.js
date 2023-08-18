@@ -1,3 +1,4 @@
+// TaskList.js
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { collection, query, where, getDocs } from 'firebase/firestore';
@@ -35,15 +36,15 @@ const TaskList = () => {
     return <div>Loading tasks...</div>;
   }
 
-
   return (
-    <div className="w-64 mx-auto bg-white rounded-lg shadow p-4 border-b-2 border-gray-300">
-    <h2 className="text-center text-xl font-bold mb-4">Your Tasks</h2>
-    {tasks.map((task) => (
-      <Task key={task.id} {...task} />
-    ))}
-  </div>
-
+    <div className="w-full mx-auto p-4 border-b-2 border-gray-300">
+      <h2 className="text-center text-xl font-bold mb-4">Your Tasks</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {tasks.map((task) => (
+          <Task key={task.id} {...task} />
+        ))}
+      </div>
+    </div>
   );
 };
 
