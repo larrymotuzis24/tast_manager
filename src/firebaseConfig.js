@@ -4,14 +4,14 @@ import { getFirestore } from "firebase/firestore";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyB-lTAidcdvNizU58JereIv6njL8gATSeA",
-    authDomain: "task-manager-22960.firebaseapp.com",
-    projectId: "task-manager-22960",
-    storageBucket: "task-manager-22960.appspot.com",
-    messagingSenderId: "571116738821",
-    appId: "1:571116738821:web:c6eba6e4dd6ea0d8af7f6c",
-    measurementId: "G-32JM6MMSR7"
-  };
+  apiKey: "AIzaSyAbVMeUBJrRsYknrK3QHfDxXTPGvX5rteE",
+  authDomain: "task-manager-dbf62.firebaseapp.com",
+  projectId: "task-manager-dbf62",
+  storageBucket: "task-manager-dbf62.appspot.com",
+  messagingSenderId: "1053944259931",
+  appId: "1:1053944259931:web:046187d7591822e17ca67e",
+  measurementId: "G-22S9LYJYTE"
+};
   
 
 const firebaseApp = initializeApp(firebaseConfig);

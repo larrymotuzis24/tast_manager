@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { addDoc, collection } from "firebase/firestore"; 
+import { addDoc, collection,  deleteDoc, doc  } from "firebase/firestore"; 
 import { db } from "../firebaseConfig";
 
 const initialState = {
@@ -17,6 +17,19 @@ export const createTask = createAsyncThunk('tasks/createTask', async (taskData) 
   }
 });
 
+export const deleteTask = createAsyncThunk('tasks/deleteTask', async (taskId) => {
+  try {
+    // Delete the task from Firebase using the task ID
+    await deleteDoc(doc(db, 'tasks', taskId));
+    console.log('Task deleted successfully:', taskId);
+    return taskId;
+  } catch (error) {
+    console.error('Error deleting task:', error);
+    throw error;
+  }
+});
+
+
 const taskSlice = createSlice({
     name: 'tasks',
     initialState,
@@ -24,6 +37,15 @@ const taskSlice = createSlice({
       setTasks:(state, action) => {
         state.tasks = action.payload;
       }
+    },
+    extraReducers: (builder) => {
+      builder
+        .addCase(createTask.fulfilled, (state, action) => {
+          state.tasks.push(action.payload);
+        })
+        .addCase(deleteTask.fulfilled, (state, action) => {
+          state.tasks = state.tasks.filter(task => task.id !== action.payload);
+        });
     }
   });
 
